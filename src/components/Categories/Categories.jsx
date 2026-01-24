@@ -1,0 +1,23 @@
+import React, { use } from 'react';
+import { NavLink } from 'react-router';
+
+const categoriesPromise = fetch("categories.json").then(response => response.json());
+
+const Categories = () => {
+    const newsCategories = use(categoriesPromise);
+    console.log(newsCategories);
+    return (
+        <div>
+            <h2 className='font-semibold text-xl text-left'>All Categories</h2>
+            <div className='grid grid-cols-1 mt-3'>
+                {
+                    newsCategories.map(
+                        category => <NavLink className={"w-[80%] px-5 py-3 text-accent hover:bg-base-200 hover:text-black"} to={`/category/${category.id}`}>{category.name}</NavLink>
+                    )
+                }
+            </div>
+        </div>
+    );
+};
+
+export default Categories;
