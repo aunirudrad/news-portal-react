@@ -19,7 +19,7 @@ const HomeLayout = () => {
                 </section>
             </header>
             {/* *:border */}
-            <main className='w-[90%] mx-auto  grid grid-cols-12'> 
+            <main className='w-[90%] mx-auto mt-20 grid grid-cols-12 gap-10'> 
                 <aside className='col-span-3'>
                     <LeftAside></LeftAside>
                 </aside>

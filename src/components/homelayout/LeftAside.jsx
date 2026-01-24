@@ -3,9 +3,11 @@ import Categories from '../Categories/Categories';
 
 const LeftAside = () => {
     return (
-        <div className='text-center'>
+        <div className=''>
             <Suspense fallback= {
-                <span className="loading loading-dots loading-lg"></span>
+                <div className='flex items-center justify-center'>
+                    <span className="loading loading-dots loading-lg"></span>
+                </div>
             }>
                 <Categories></Categories>
             </Suspense>
