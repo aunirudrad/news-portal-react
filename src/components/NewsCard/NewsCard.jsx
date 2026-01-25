@@ -12,7 +12,7 @@ const NewsCard = ({news}) => {
     } = news;
 
     return (
-        <div className="border rounded-lg overflow-hidden mb-6 bg-white">
+        <div className="border border-base-300 rounded-lg overflow-hidden mb-6 bg-white">
             {/* Author Header */}
             <div className="flex items-center justify-between p-4 bg-gray-100">
                 <div className="flex items-center gap-3">
@@ -65,7 +65,7 @@ const NewsCard = ({news}) => {
                 </a>
 
                 {/* Footer - Rating and Views */}
-                <div className="flex items-center justify-between pt-4 border-t">
+                <div className="flex items-center justify-between pt-4 border-t border-base-300">
                     <div className="flex items-center gap-1">
                         {[...Array(5)].map((_, index) => (
                             <FaStar 
