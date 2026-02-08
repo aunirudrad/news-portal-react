@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { Link } from 'react-router';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
-
+    const {LoginUser} = use(AuthContext);
     const [showPass, setShowPass] = useState(false);
+    const handleLogIn = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        LoginUser(email, password)
+        .then(response  => {
+            const user = response.user;
+        } ).catch(err => err.message);
+
+        
+    }
     return (
         <div className='min-h-screen bg-gray-100'>            
             <div className='flex justify-center items-center py-20 px-4'>
@@ -15,7 +30,7 @@ const Login = () => {
                     </h2>
 
                     {/* Login Form */}
-                    <form className='space-y-6'>
+                    <form onSubmit={handleLogIn} className='space-y-6'>
                         {/* Email Address */}
                         <div>
                             <label 

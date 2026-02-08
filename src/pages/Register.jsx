@@ -1,9 +1,36 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { Link } from 'react-router';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Register = () => {
+    const {createUser, setUser} = use(AuthContext);
+
     const [showPass, setShowPass] = useState(false);
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const photo = form.photo.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        // console.log({name, photo, email, password});
+
+        createUser(email, password)
+        .then((res) => {
+            const user = res.user;
+            setUser(user);
+            console.log(user);
+        }).catch(err => {
+            console.log(err.message);
+        })
+
+
+
+
+    }
 
     return (
         <div className='min-h-screen bg-gray-100'>
@@ -16,7 +43,7 @@ const Register = () => {
                     </h2>
 
                     {/* Registration Form */}
-                    <form className='space-y-6'>
+                    <form onSubmit={handleRegister} className='space-y-6'>
                         {/* Your Name */}
                         <div>
                             <label 
@@ -89,7 +116,7 @@ const Register = () => {
                             <button 
                                 type="button"
                                 onClick={() => setShowPass(!showPass)} 
-                                className='absolute right-4 top-12 text-gray-600 hover:text-gray-800'
+                                className='absolute right-4 top-13 text-gray-600 hover:text-gray-800'
                             >
                                 {showPass ? <FaEyeSlash /> : <FaEye />}
                             </button>
