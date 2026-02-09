@@ -1,11 +1,13 @@
 import React, { use, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
     const {loginUser, setUser} = use(AuthContext);
     const [showPass, setShowPass] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
     const handleLogIn = (e) => {
         e.preventDefault();
 
@@ -19,6 +21,7 @@ const Login = () => {
         .then(response  => {
             const user = response.user;
             setUser(user);
+            navigate(`${location.state ? location.state : '/'}`)
         } ).catch(err => err.message);
 
         
