@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
-    const {LoginUser} = use(AuthContext);
+    const {loginUser, setUser} = use(AuthContext);
     const [showPass, setShowPass] = useState(false);
     const handleLogIn = (e) => {
         e.preventDefault();
@@ -13,9 +13,12 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        LoginUser(email, password)
+        console.log(email, password);
+
+        loginUser(email, password)
         .then(response  => {
             const user = response.user;
+            setUser(user);
         } ).catch(err => err.message);
 
         
